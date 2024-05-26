@@ -18,7 +18,7 @@ app.get('/api/apilinks', (req, res) => {
 
 
 app.get('/:static(index.html|style.css|script.js|movie.html|movie.js)', (req, res) => {
-    res.sendFile('D:/movie-reviews/' + req.params.static)
+    res.sendFile(`${process.env.PROJECT_PATH}` + req.params.static)
 })
 app.use(cors());
 app.use(express.json()); 
