@@ -24,7 +24,7 @@ app.use("*", (req, res) =>
 const MongoClient = mongodb.MongoClient
 
 const connectionString = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/`
-const port = 8000
+const port = process.env.PORT
 
 MongoClient.connect(
     connectionString,
