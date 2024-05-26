@@ -8,8 +8,18 @@ export default class ReviewsController {
             const user = req.body.user
             // console.log("before addReview")
             const reviewResponse = await ReviewsDAO.addReview(movieId, user, review)
-            // console.log("after addReview")
-            res.json({status: "success"})
+            // console.log("after addReview", reviewResponse)
+
+            if (reviewResponse.acknowledged) {
+                res.json(
+                    {
+                        status: "success",
+                        "_id": reviewResponse.insertedId
+                    }
+                )
+            } else {
+                res.status(400).json({error: "Bad request"})
+            }
         }
         catch(e){
             res.status(500).json({error: e.message})
