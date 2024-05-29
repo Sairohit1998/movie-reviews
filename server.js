@@ -15,7 +15,9 @@ app.get('/api/apilinks', (req, res) => {
     res.json({ APILINK, SEARCHAPI, IMG_PATH });
 });
 
-
+app.get('/', (req, res) => {
+    res.status(200).send("Health status OK!")
+})
 
 app.get('/:static(index.html|style.css|script.js|movie.html|movie.js)', (req, res) => {
     res.sendFile(`${process.env.PROJECT_PATH}` + req.params.static)
