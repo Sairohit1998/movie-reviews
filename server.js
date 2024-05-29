@@ -15,8 +15,12 @@ app.get('/api/apilinks', (req, res) => {
     res.json({ APILINK, SEARCHAPI, IMG_PATH });
 });
 
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
     res.status(200).send("Health status OK!")
+})
+
+app.get('/', (req, res) => {
+    res.redirect('/index.html')
 })
 
 app.get('/:static(index.html|style.css|script.js|movie.html|movie.js)', (req, res) => {
