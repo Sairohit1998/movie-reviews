@@ -20,7 +20,7 @@ app.get('/health', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.redirect('/index.html')
+    res.sendFile(`${process.env.PROJECT_PATH}` + "index.html")
 })
 
 app.get('/:static(index.html|style.css|script.js|movie.html|movie.js)', (req, res) => {
