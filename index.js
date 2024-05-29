@@ -6,7 +6,16 @@ import ReviewsDAO from "./dao/reviewsDAO.js" // Data Access Objects
 
 const MongoClient = mongodb.MongoClient
 
-const connectionString = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/`
+let connectionString;
+
+if(process.env.CLUSTER_ON_CLOUD){
+    connectionString = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/`
+}
+else{
+    connectionString = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/`
+    // const connectionString = 'mongodb://username:password@host1:27017,host2:27017,host3:27017/myDatabase?replicaSet=myReplicaSet';
+}
+
 const port = process.env.PORT
 
 MongoClient.connect(
