@@ -12,7 +12,7 @@ if(process.env.CLUSTER_ON_CLOUD){
     connectionString = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/`
 }
 else{
-    connectionString = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/`
+    connectionString = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DOMAIN}/reviews`
     // const connectionString = 'mongodb://username:password@host1:27017,host2:27017,host3:27017/myDatabase?replicaSet=myReplicaSet';
 }
 
