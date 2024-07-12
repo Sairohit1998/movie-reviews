@@ -3,6 +3,10 @@ dotenv.config()
 import app from "./server.js"
 import mongodb from "mongodb"
 import ReviewsDAO from "./dao/reviewsDAO.js" // Data Access Objects
+import path from "path"
+import express from "express"
+import { fileURLToPath } from "url"
+
 
 const MongoClient = mongodb.MongoClient
 
@@ -16,7 +20,15 @@ else{
     // const connectionString = 'mongodb://username:password@host1:27017,host2:27017,host3:27017/myDatabase?replicaSet=myReplicaSet';
 }
 
-const port = process.env.PORT
+const port = process.env.PORT ||
+27017;
+const _filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(_filename)
+
+app.use(express.static((__dirname)))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"))
+})
 
 MongoClient.connect(
     connectionString,
